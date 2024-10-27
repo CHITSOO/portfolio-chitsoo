@@ -3,10 +3,26 @@ package com.chitsoo.portfolio.domain.entity
 import jakarta.persistence.*
 
 @Entity
-class ProjectDetail : BaseEntity() {
+class ProjectDetail(
+    content: String,
+    url: String?,
+    isActive: Boolean
+) : BaseEntity() {
 
-    @Id // pk임을 알려줌
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "project_detail_id")
-    var id: Long? = null //자료형 뒤에 ?은 null을 허용한다.
+    var id: Long? = null
+
+    var content: String = content
+
+    var url: String? = url
+
+    var isActive: Boolean = isActive
+
+    fun update(content: String, url: String, isActibe: Boolean) {
+        this.content = content
+        this.url = url
+        this.isActive = isActive
+    }
 }
